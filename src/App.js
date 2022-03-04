@@ -1,12 +1,23 @@
-import './App.css';
+import React, { useState } from 'react';
+import CalendarHeader from './components/CalendarHeader';
+import Month from './components/Month';
+import Sidebar from './components/Sidebar';
 import { getMonth } from './util';
+import './App.css';
 
 function App() {
-  console.log(getMonth());
+  const [currentMonth, setCurrentMonth] = useState(getMonth());
+
   return (
-    <div className="App">
-      <h1>Hello Google calendar</h1>                  
-    </div>
+    <React.Fragment>
+      <div className="h-screen flex flex-columns">
+        <CalendarHeader />
+        <div className="flex flex-1">
+          <Sidebar />
+          <Month month={currentMonth} />
+        </div>
+      </div>                
+    </React.Fragment>
   );
 }
 
