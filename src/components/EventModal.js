@@ -7,7 +7,7 @@ import { LABEL_CLASSES } from "../constants";
 const EventModal = () => {
     const [title, setTitle] = React.useState("");
     const [description, setDescription] = React.useState("");
-    const [selectedLabel, setSelectedLabel] = React.useState(LABEL_CLASSES[0]);
+    const [selectedLabel, setSelectedLabel] = React.useState(LABEL_CLASSES[1]);
 
     const {setShowEventModal, daySelected, dispatchEvent} = useContext(GlobalContext);
 

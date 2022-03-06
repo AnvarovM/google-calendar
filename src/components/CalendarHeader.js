@@ -2,9 +2,10 @@ import dayjs from 'dayjs';
 import React from 'react'
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import GlobalContext from '../context/GlobalContext';
+import { MdMenu } from 'react-icons/md';
 
 const CalendarHeader = () => {
-  const { monthIndex, setMonthIndex } = React.useContext(GlobalContext);
+  const { monthIndex, setMonthIndex, showSidebar, setShowSidebar } = React.useContext(GlobalContext);
 
   const handlePrevMonth = () => {
     setMonthIndex(monthIndex - 1);
@@ -20,6 +21,9 @@ const CalendarHeader = () => {
 
   return (
     <header className='px-4 py-2 flex items-center'>
+      <span onClick={() => setShowSidebar(!showSidebar)} className="text-gray-500 text-2xl cursor-pointer mr-4">
+          <MdMenu />    
+      </span>
       <img className='mr-2 w-12 h-12' src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Calendar_icon_%282020%29.svg/512px-Google_Calendar_icon_%282020%29.svg.png?20201017163428" alt="calendar logo" />
       <h1 className='mr-2 text-xl text-gray-500 font-bold'>Calendar</h1>
       <button onClick={handleReset} className='border rounded py-2 px-4 mx-5 text-gray-700 hover:bg-gray-100' title='today'>Today</button>

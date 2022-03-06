@@ -9,7 +9,7 @@ import { useContext } from 'react';
 const SmallCalendar = () => {
     const [currentMonthIdx, setCurrentMonthIdx] = React.useState(dayjs().month());
     const [currentMonth, setCurrentMonth] = React.useState(getMonth());
-    const { monthIndex, setSmallCalendarMonth, daySelected, setDaySelected } = useContext(GlobalContext);
+    const { monthIndex, setSmallCalendarMonth, daySelected, setDaySelected, showSidebar } = useContext(GlobalContext);
 
     useEffect(() => {
         setCurrentMonth(getMonth(currentMonthIdx));
@@ -37,14 +37,14 @@ const SmallCalendar = () => {
         if (currDay === today) {
             return 'bg-blue-500 rounded-full text-white';
         } else if (currDay === selectedDay) {
-            return 'bg-green-500 rounded-full text-white';
+            return 'bg-emerald-500 rounded-full text-white';
         } else {
             return '';
         }
     }
 
   return (
-    <div className='mt-9'>
+    <div className={showSidebar ? 'mt-9 hidden' : 'block'}>
         <header className='flex justify-between items-center'>
             <p className="text-gray-500 font-bold flex flex-grow">
                 {dayjs(new Date(dayjs().year(), currentMonthIdx)).format('MMMM YYYY')} 
