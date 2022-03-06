@@ -32,7 +32,7 @@ const EventModal = () => {
     };
 
   return <div className="h-screen w-full fixed flex left-0 top-0 justify-center items-center">
-      <form className="bg-white rounded-lg shadow-2xl w-1/4">
+      <form className="bg-white rounded-lg shadow-2xl w-[300px] sm:w-[350px] md:w-[400px] lg:w-1/4">
         <header className="bg-gray-200 px-4 py-2 flex justify-between items-center">
             <span className="text-gray-400">
                 <MdOutlineDragHandle />    
