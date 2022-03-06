@@ -21,7 +21,7 @@ function App() {
       {showEventModal && <EventModal />}
       <div className="h-screen flex flex-col">
         <CalendarHeader />
-        <div className="flex flex-1">
+        <div className="flex flex-1 w-full">
           <Sidebar />
           <Month month={currentMonth} />
         </div>
