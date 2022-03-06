@@ -1,1 +1,1 @@
-export const LABEL_CLASSES = ['indigo', 'gray', 'green', 'blue', 'red', 'purple'];
+export const LABEL_CLASSES = ['indigo', 'green', 'blue', 'yellow', 'orange', 'red'];
