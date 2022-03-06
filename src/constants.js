@@ -1,0 +1,1 @@
+export const LABEL_CLASSES = ['indigo', 'gray', 'green', 'blue', 'red', 'purple'];
