@@ -1,15 +1,16 @@
 import React from "react";
-import { MdOutlineDragHandle, MdClose, MdSchedule, MdSegment, MdBookmarkBorder, MdCheck } from 'react-icons/md';
+import { MdOutlineDragHandle, MdClose, MdSchedule, MdSegment, MdBookmarkBorder, MdCheck, MdDeleteOutline } from 'react-icons/md';
 import { useContext } from "react";
 import GlobalContext from "../context/GlobalContext";
 import { LABEL_CLASSES } from "../constants";
 
 const EventModal = () => {
-    const [title, setTitle] = React.useState("");
-    const [description, setDescription] = React.useState("");
-    const [selectedLabel, setSelectedLabel] = React.useState(LABEL_CLASSES[1]);
+    const {setShowEventModal, daySelected, dispatchEvent, selectedEvent} = useContext(GlobalContext);
 
-    const {setShowEventModal, daySelected, dispatchEvent} = useContext(GlobalContext);
+    const [title, setTitle] = React.useState(selectedEvent ? selectedEvent.title : '');
+    const [description, setDescription] = React.useState(selectedEvent ? selectedEvent.title : '');
+    const [selectedLabel, setSelectedLabel] = React.useState(selectedEvent ? LABEL_CLASSES.find((lbl) => lbl === selectedEvent.label) : LABEL_CLASSES[1]);
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -18,10 +19,15 @@ const EventModal = () => {
             description,
             label: selectedLabel,
             day: daySelected.valueOf(),
-            id: Date.now()
+            id: selectedEvent ? selectedEvent.id : Date.now()
         };
+
+        if (selectedEvent) {
+            dispatchEvent({type: 'update', payload: calendarEvent});
+        } else {
+            dispatchEvent({type: "push", payload: calendarEvent});
+        }
         
-        dispatchEvent({type: "push", payload: calendarEvent});
         setShowEventModal(false);
     };
 
@@ -31,11 +37,21 @@ const EventModal = () => {
             <span className="text-gray-400">
                 <MdOutlineDragHandle />    
             </span>
-            <button onClick={() => setShowEventModal(false)}>
-                <span className="text-gray-400">
-                    <MdClose />    
-                </span>
-            </button>
+            <div className="flex items-center space-x-1">
+                {selectedEvent && (
+                    <span onClick={() => {
+                        dispatchEvent({type: 'delete', payload: selectedEvent});
+                        setShowEventModal(false);
+                    }} className="text-gray-400 cursor-pointer hover:text-red-600">
+                        <MdDeleteOutline />    
+                    </span>
+                )}
+                <button onClick={() => setShowEventModal(false)}>
+                    <span className="text-gray-400 cursor-pointer hover:text-red-600">
+                        <MdClose />    
+                    </span>
+                </button>
+            </div>
         </header>
         <div className="p-3 bg-gray-100">
             <div className="grid grid-cols-1/5 items-end gap-y-7">

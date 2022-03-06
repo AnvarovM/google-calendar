@@ -13,6 +13,8 @@ const GlobalContext = React.createContext({
     savedEvents: [],
     showSidebar: false,
     setShowSidebar: () => {},
+    selectedEvent: null,
+    setSelectedEvent: () => {},
 });
 
 export default GlobalContext;

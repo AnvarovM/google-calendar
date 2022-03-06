@@ -12,6 +12,7 @@ export const ContextWrapper = ({ children }) => {
   const [daySelected, setDaySelected] = React.useState(dayjs());
   const [showEventModal, setShowEventModal] = React.useState(null);
   const [showSidebar, setShowSidebar] = React.useState(null);
+  const [selectedEvent, setSelectedEvent] = React.useState(null);
   const [savedEvents, dispatchEvent] = useReducer(savedEventsReducer, [], initEvents);
 
   useEffect(() => {
@@ -37,6 +38,8 @@ export const ContextWrapper = ({ children }) => {
       savedEvents,
       showSidebar,
       setShowSidebar,
+      selectedEvent,
+      setSelectedEvent
       }}>
         {children}
     </GlobalContext.Provider>
